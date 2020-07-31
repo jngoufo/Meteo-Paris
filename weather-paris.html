@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title>Le temps qu'il fait à Paris</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <style>
+            div#nextdaysmeteo, .nexthour{
+                overflow-x: auto;
+                overflow-y: auto;
+            }
+            img.meteoiconhour {
+                max-width: 1.7em;
+            }
+            span.celsius {
+                font-size: x-small;
+            }
+            td {
+                text-align: center;
+                min-width: 6em;
+                height: 2.5em;
+            }
+            table.todayforecasttable tbody tr:nth-child(1)>td, table.nextdaysforecasttable tbody tr:first-child td, table.nextdaysforecasttable tr td:first-child {
+                font-weight: bold;
+            }
+            table.nextdaysforecasttable tbody tr:first-child td:first-child, span.weekday {
+                font-weight: 100;
+                font-style: italic;
+            }
+            table.nextdaysforecasttable tbody tr:first-child td:first-child {
+                font-size: smaller;
+            }
+            h1.weatherh1 {
+                text-align: center;
+            }
+            p.dateText {
+                text-align: center;
+                font-size: small;
+            }
+            p.thistimep {
+                text-align: center;
+                font-size: xxx-large;
+                font-weight: 900;
+            }
+            .currentmeteo{
+                margin-bottom: 0.5em;
+            }
+            .nexthour.col-xs-12, .currenthour.col-xs-12 {
+                margin: 2em 0;
+            }
+            .nextdaysforecasttable {
+                margin-top: 0.5em;
+                width: 100%;
+            }
+            span.conditions {
+                font-weight: lighter;
+            }
+        </style>
+    </head>
+    <body>
+      <div id="weather"></div>
+  
+        <script src="weather.js"></script>
+      </body>
+    </html>
