@@ -21,8 +21,6 @@
             currentDayMeteo.className = 'currentdaymeteo container';
             let weatherH1 = document.createElement('H1');
             weatherH1.classList.add('weatherh1');
-            let dateMeteo = document.createElement('p');
-            dateMeteo.classList.add('dateText');
             let currentCondH2 = document.createElement('H2');
             currentCondH2.className = 'currentcondh2';
             let currentMeteo = document.createElement('div');
@@ -60,7 +58,7 @@
 
 
             // let's add the nodes created earlier to the DOM
-            weatherInfo.append(weatherH1, dateMeteo, currentDayMeteo, nextDaysMeteo);
+            weatherInfo.append(weatherH1, currentDayMeteo, nextDaysMeteo);
             currentDayMeteo.append(currentMeteo);
             currentMeteo.append(currentHour, nextHoursForecasts);
             currentHour.append(currentCondH2,thisTimeP, currentCond);
@@ -117,9 +115,17 @@
                 }
 
                 // Let's display the weather conditions at current time
+                t = new Date();
+                    function addZero(i, h) { // add zero if time data has 1 digit only
+                        if (i < 10 ) {
+                          i = "0" + i;
+                        }
+                        return i;
+                      }
+                let theParisHour = addZero(t.getUTCHours()+2); //Paris time is UTC+2
+                let theParisMin= addZero(t.getUTCMinutes());
                 weatherH1.innerHTML = 'Météo sur ' + '<span id="paris">' + meteo.city_info.name + ', ' + meteo.city_info.country + '</span>';
-                dateMeteo.innerHTML = 'Bulletin du ' + meteo.current_condition.date + ' à ' + meteo.current_condition.hour;
-                currentCondH2.innerHTML = 'En ce moment:';
+                currentCondH2.innerHTML = 'En ce moment, ' + arrayOfDays[0].day_short + ' ' + theParisHour + ':' + theParisMin + ' min';
                 let meteoIcon = document.createElement('img');
                 meteoIcon.className = 'meteoicon';
                 let meteoIconSrc = document.createAttribute('src');
@@ -130,7 +136,6 @@
                 currentCond.innerHTML = '<span class="conditions"> Conditions: </span><span class="conditions-val">' + meteo.current_condition.condition + '</span><span class="conditions"> | Humidité: </span><span class="conditions-val">' + meteo.current_condition.humidity + '% </span><span class="conditions"> | Pression: </span><span class="conditions-val">' + meteo.current_condition.pressure + ' Hpa </span><span class="conditions"> | Vitesse du vent: </span><span class="conditions-val">' + meteo.current_condition.wnd_spd + ' Km/h </span><span class="conditions"> | Direction du vent: </span><span class="conditions-val">' + meteo.current_condition.wnd_dir + '° </span><span class="conditions"> | Rafales: </span><span class = "conditions-val">' + meteo.current_condition.wnd_gust + ' Km/h </span>';
 
                 // Let's create the table of today's forecasts
-                t = new Date();
                 let nextHours = 23 - (t.getUTCHours()+2); // Hours left in the day. Note: Paris time is UTC+2. 
                 let nextHoursH2 = document.createElement('H2');
                 nextHoursH2.innerHTML = "Plus tard aujourd'hui:";
@@ -216,6 +221,7 @@
                     let t, b; 
                     for (t = 1, b = 1; t<tablerow.length, b<arrayOfMeteo[h].length;t++, b++) {
                         let meteoIcon_nextDays = document.createElement('img');
+                        meteoIcon_nextDays.setAttribute('title', arrayofHours[h])
                         meteoIcon_nextDays.className = 'meteoiconhour';
                         let meteoIconSrc_nextDays = document.createAttribute('src');
                         meteoIcon_nextDays.setAttributeNode(meteoIconSrc_nextDays);
@@ -334,4 +340,6 @@
                     });
                 }
             }) 
+
+            
 

@@ -4,6 +4,23 @@
     <title>Le temps qu'il fait à Paris</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <style>
+            #wrapper\ container-fluid {
+	            background-image: url(https://res.cloudinary.com/monwebmestre/image/upload/v1596266424/Projets/Meteo%20Paris/Paris_Sky-min.jpg);
+	            background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                background-position: top;
+            }
+            #weather {
+                background-color: rgba(255, 255, 255, 0.9);
+            }
+            .currenthour.col-xs-12 {
+                text-align: center;
+                position: relative;
+            }
+            .currentmeteo.row {
+                text-align: center;
+            }
             div#nextdaysmeteo, .nexthour{
                 overflow-x: auto;
                 overflow-y: auto;
@@ -45,7 +62,7 @@
                 margin-bottom: 0.5em;
             }
             .nexthour.col-xs-12, .currenthour.col-xs-12 {
-                margin: 2em 0;
+                margin: 2em auto;
             }
             .nextdaysforecasttable {
                 margin-top: 0.5em;
@@ -57,7 +74,9 @@
         </style>
     </head>
     <body>
-      <div id="weather"></div>
+        <div id="wrapper container-fluid">
+          <div id='weather'></div>
+        </div>
   
         <script src="weather.js"></script>
       </body>
