@@ -339,7 +339,47 @@
                         comingHoursForecasts[k].style.cursor = 'default';
                     });
                 }
+                            // Let's change the page background according to the time of the day
+                if(t.getMonth()+1 >= 10 && t.getMonth()+1 < 4) { //between october and March
+                    switch(theParisHour){
+                        case(theParisHour >= 20  && theParisHour <= 5): //between 8pm and 5am
+                            weatherInfo.style.backgroundColor = 'rgb(4, 13, 21, .9)';
+                            document.body.style.color = '#fff';
+                        break;
+                        case(theParisHour >= 6  && theParisHour <= 9):
+                            weatherInfo.style.backgroundColor = 'rgb(38, 112, 175, .9)';
+                            document.body.style.color = '#fff';
+                        break;
+                        case(theParisHour >= 10  && theParisHour <= 16):
+                            weatherInfo.style.backgroundColor = 'rgb(234, 245, 250, .9)';
+                            document.body.style.color = '#000';
+                        break;
+                        case(theParisHour >= 17  && theParisHour <= 19):
+                            weatherInfo.style.backgroundColor = 'rgb(61, 61, 92, .9)';
+                            document.body.style.color = '#fff';
+                        break;
+                        default:
+                            weatherInfo.style.backgroundColor = 'rgb(255, 255, 255, .9)';
+                            document.body.style.color = '#000';
+                    }
+                } else {
+                    switch(theParisHour){
+                        case theParisHour >= 21  && theParisHour <= 5: //between 10pm and 5am
+                            weatherInfo.style.backgroundColor = 'rgb(10, 31, 41, .9)';
+                            document.body.style.color = '#fff';
+                        break;
+                        case theParisHour >= 6  && theParisHour <= 9:
+                            weatherInfo.style.backgroundColor = 'rgb(101, 194, 245, .9)';
+                            document.body.style.color = '#000';
+                        break;
+                        case theParisHour >= 10  && theParisHour <= 20:
+                            weatherInfo.style.backgroundColor = 'rgb(69, 145, 211, .9)';
+                            document.body.style.color = '#fff';
+                        break;
+                        default:
+                            weatherInfo.style.backgroundColor = 'rgb(245, 254, 232, .9)';
+                            document.body.style.color = '#000';
+                    }
+                }
             }) 
-
-            
 
