@@ -1,4 +1,4 @@
 # Meteo-de-Paris
 Quel temps fait-il à Paris aujourd'hui et dans les prochains jours ? Mon application répond à cette question.
 Elle a été développée dans le cadre de mon apprentissage de la programmation en Javascript. J'ai donc utilisé largement du Javascript, et un peu de HTML et CSS, afin de permettre à l'utilisatrice de voir les conditions météo actuelles et futures en cliquant sur les données affichées. Aussi, les données météo dans cette application sont obtenues à partir de requêtes AJAX sur le fichier JSON disponible sur https://www.prevision-meteo.ch/services/json/paris
-Alors, on va voir le ciel de Paris ? Ca vaut vraiment le détour (hahaha)
+Alors, on va voir le ciel de Paris ? Ça vaut vraiment le détour (hahaha)
