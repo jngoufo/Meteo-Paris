@@ -143,23 +143,23 @@
                             document.body.style.color = '#fff'; 
                             break;
                         case "Nuit claire":
-                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596744625/Projets/Meteo%20Paris/Nuit-claire-rgb_38_-112_-175_-min.jpg")';
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1597523715/Projets/Meteo%20Paris/Nuit-claire-min.jpg")';
                             document.body.style.color = '#fff'; 
                             break;
-                        case "Nuit légèrement voilée": //*
-                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596744625/Projets/Meteo%20Paris/Nuit-claire-rgb_38_-112_-175_-min.jpg")';
+                        case "Nuit légèrement voilée": 
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1597523910/Projets/Meteo%20Paris/nuit_voilee_min.jpg")';
                             document.body.style.color = '#fff'; 
                             break;
-                        case "Ciel voilé"://*
-                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Temps-par-defaut-min.jpg")';
-                            document.body.style.color = '#fff'; 
+                        case "Ciel voilé":
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1597525842/Projets/Meteo%20Paris/Ciel-voile-min.jpg")';
+                            document.body.style.color = '#000'; 
                             break;
                         case "Eclaircies": 
                             weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Jour-eclairci-min.jpg")';
                             document.body.style.color = '#fff'; 
                             break;
-                        case "Fortement nuageux": //*
-                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Nuit-nuageuse-rgb_38_-112_-175_-min.jpg")';
+                        case "Fortement nuageux": 
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1597525271/Projets/Meteo%20Paris/Nuit_nuageuse_rgb_38_112_175.jpg")';
                             document.body.style.color = '#fff'; 
                             break;
                         case "Développement nuageux":
@@ -171,11 +171,11 @@
                             document.body.style.color = '#fff'; 
                             break;
                         case "Nuit nuageuse":
-                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Nuit-nuageuse-rgb_38_-112_-175_-min.jpg")';
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1597525271/Projets/Meteo%20Paris/Nuit_nuageuse_rgb_38_112_175.jpg")';
                             document.body.style.color = '#fff'; 
                             break;
                         case "Nuit avec développement nuageux":
-                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Nuit-nuageuse-rgb_38_-112_-175_-min.jpg")';
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1597525271/Projets/Meteo%20Paris/Nuit_nuageuse_rgb_38_112_175.jpg")';
                             document.body.style.color = '#fff'; 
                             break;
                         case "Faiblement orageux": //*
@@ -183,11 +183,15 @@
                             document.body.style.color = '#fff'; 
                             break;
                         case "Faiblement nuageux":
-                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Temps-par-defaut-min.jpg")';
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1597525842/Projets/Meteo%20Paris/Ciel-voile-min.jpg")';
+                            document.body.style.color = '#000'; 
+                            break;
+                        case "Nuit bien dégagée":
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596744625/Projets/Meteo%20Paris/Nuit-claire-rgb_38_-112_-175_-min.jpg")';
                             document.body.style.color = '#fff'; 
                             break;
-                        default:
-                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Temps-par-defaut-min.jpg")';
+                            default:
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1597524154/Projets/Meteo%20Paris/Temps-defaut-min.jpg")';
                             document.body.style.color = '#fff'; 
                             break;
                     } 
