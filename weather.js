@@ -133,8 +133,66 @@
                         number = "0" + number;
                     }
                     return number;
-                    }
-
+                }
+                
+                function changeBackground(){ //set and change the page background to match the conditions displayed
+                    let condVal = document.querySelector('.conditions-val').textContent 
+                    switch(condVal) {
+                        case "Ensoleillé":
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Jour-ensoleille-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        case "Nuit claire":
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596744625/Projets/Meteo%20Paris/Nuit-claire-rgb_38_-112_-175_-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        case "Nuit légèrement voilée": //*
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596744625/Projets/Meteo%20Paris/Nuit-claire-rgb_38_-112_-175_-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        case "Ciel voilé"://*
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Temps-par-defaut-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        case "Eclaircies": 
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Jour-eclairci-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        case "Fortement nuageux": //*
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Nuit-nuageuse-rgb_38_-112_-175_-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        case "Développement nuageux":
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Jour-nuageux-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        case "Averses de pluie faible":
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707244/Projets/Meteo%20Paris/Jour-pluvieux-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        case "Nuit nuageuse":
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Nuit-nuageuse-rgb_38_-112_-175_-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        case "Nuit avec développement nuageux":
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Nuit-nuageuse-rgb_38_-112_-175_-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        case "Faiblement orageux": //*
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707244/Projets/Meteo%20Paris/Jour-pluvieux-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        case "Faiblement nuageux":
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Temps-par-defaut-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                        default:
+                            weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Temps-par-defaut-min.jpg")';
+                            document.body.style.color = '#fff'; 
+                            break;
+                    } 
+                }                  
+                
                 let theParisHour = addZero(convertToParisTime()); 
                 let theParisMin= addZero(t.getUTCMinutes());
                 weatherH1.innerHTML = 'Météo sur ' + '<span id="paris">' + meteo.city_info.name + ', ' + meteo.city_info.country + '</span>';
@@ -147,6 +205,7 @@
                 currentTemp.insertAdjacentElement('afterend', meteoIcon);
                 currentTemp.innerHTML = meteo.current_condition.tmp  + '<span class="celsius">' + '℃' + '</span>';
                 currentCond.innerHTML = '<span class="conditions"> Conditions: </span><span class="conditions-val">' + meteo.current_condition.condition + '</span><span class="conditions"> | Humidité: </span><span class="conditions-val">' + meteo.current_condition.humidity + '% </span><span class="conditions"> | Pression: </span><span class="conditions-val">' + meteo.current_condition.pressure + ' Hpa </span><span class="conditions"> | Vitesse du vent: </span><span class="conditions-val">' + meteo.current_condition.wnd_spd + ' Km/h </span><span class="conditions"> | Direction du vent: </span><span class="conditions-val">' + meteo.current_condition.wnd_dir + '° </span><span class="conditions"> | Rafales: </span><span class = "conditions-val">' + meteo.current_condition.wnd_gust + ' Km/h </span>';
+                changeBackground();
 
                 // Let's create the table of today's forecasts
  
@@ -195,6 +254,7 @@
                         meteoIconSrc.value = arrayOfMeteo[i][0].ICON; // the url in the src attribute becomes the one for the next hour requested
                         currentCond.innerHTML = '<span class="conditions"> Conditions: </span><span class="conditions-val">' + arrayOfMeteo[i][0].CONDITION + '</span><span class="conditions"> | Humidité relative: </span><span class="conditions-val">' + arrayOfMeteo[i][0].RH2m + '% </span><span class="conditions"> | Précipitations: </span><span class="conditions-val">' + arrayOfMeteo[i][0].APCPsfc + ' mm </span><span class="conditions"> | Vitesse du vent à 10m : </span><span class="conditions-val">' + arrayOfMeteo[i][0].WNDSPD10m + ' Km/h</span><span class="conditions"> | Direction du vent: </span><span class="conditions-val">' + arrayOfMeteo[i][0].WNDDIR10m + '°</span><span class="conditions"> | Rafales à 10m: </span><span class="conditions-val">' + arrayOfMeteo[i][0].WNDGUST10m + ' Km/h</span>';
                         currentCondH2.innerHTML = 'Aujourd\'hui' + ' à ' + arrayofHours[i];
+                        changeBackground()
                     })
                 }
 
@@ -283,24 +343,28 @@
                                 meteoIconSrc.value = arrayOfMeteo[h][1].ICON; // the url in the src attribute becomes the one for tomorrow
                                 currentCond.innerHTML = '<span class="conditions"> Conditions: </span><span class="conditions-val">' + arrayOfMeteo[h][1].CONDITION + '</span><span class="conditions"> | Humidité relative: </span><span class="conditions-val">' + arrayOfMeteo[h][1].RH2m + '% </span><span class="conditions"> | Précipitations: </span><span class="conditions-val">' + arrayOfMeteo[h][1].APCPsfc + ' mm </span><span class="conditions"> | Vitesse du vent à 10m : </span><span class="conditions-val">' + arrayOfMeteo[h][1].WNDSPD10m + ' Km/h</span><span class="conditions"> | Direction du vent: </span><span class="conditions-val">' + arrayOfMeteo[h][1].WNDDIR10m + '°</span><span class="conditions"> | Rafales à 10m: </span><span class="conditions-val">' + arrayOfMeteo[h][1].WNDGUST10m + ' Km/h</span>';
                                 currentCondH2.innerHTML = arrayOfDays[1].day_long +' '+ arrayOfDays[1].date + ' à ' + time;
+                                changeBackground()
                                 break;
                                 case 2: // ... let's say the click is on the cell at index 2 (which is 1 day after tomorrow), the nodes are changed as follow...
                                 currentTemp.innerHTML = arrayOfMeteo[h][2].TMP2m + '<span class="celsius">' + '℃' + '</span>';// "currentTemp" is filled with the temperature the located in 1 day  after tomorrow
                                 meteoIconSrc.value = arrayOfMeteo[h][2].ICON;
                                 currentCond.innerHTML = '<span class="conditions"> Conditions: </span><span class="conditions-val">' + arrayOfMeteo[h][2].CONDITION + '</span><span class="conditions"> | Humidité relative: </span><span class="conditions-val">' + arrayOfMeteo[h][2].RH2m + '% </span><span class="conditions"> | Précipitations: </span><span class="conditions-val">' + arrayOfMeteo[h][2].APCPsfc + ' mm </span><span class="conditions"> | Vitesse du vent à 10m : </span><span class="conditions-val">' + arrayOfMeteo[h][2].WNDSPD10m + ' Km/h</span><span class="conditions"> | Direction du vent: </span><span class="conditions-val">' + arrayOfMeteo[h][2].WNDDIR10m + '°</span><span class="conditions"> | Rafales à 10m: </span><span class="conditions-val">' + arrayOfMeteo[h][2].WNDGUST10m + ' Km/h</span>';
                                 currentCondH2.innerHTML = arrayOfDays[2].day_long +' '+ arrayOfDays[2].date + ' à ' + time;
+                                changeBackground()
                                 break;
                                 case 3: // ... let's say the click is on the cell at index 3 (which is the 2 days after tomorrow), the nodes are changed as follow...
                                 currentTemp.innerHTML = arrayOfMeteo[h][3].TMP2m + '<span class="celsius">' + '℃' + '</span>';
                                 meteoIconSrc.value = arrayOfMeteo[h][3].ICON;
                                 currentCond.innerHTML = '<span class="conditions"> Conditions: </span><span class="conditions-val">' + arrayOfMeteo[h][3].CONDITION + '</span><span class="conditions"> | Humidité relative: </span><span class="conditions-val">' + arrayOfMeteo[h][3].RH2m + '% </span><span class="conditions"> | Précipitations: </span><span class="conditions-val">' + arrayOfMeteo[h][3].APCPsfc + ' mm </span><span class="conditions"> | Vitesse du vent à 10m : </span><span class="conditions-val">' + arrayOfMeteo[h][3].WNDSPD10m + ' Km/h</span><span class="conditions"> | Direction du vent: </span><span class="conditions-val">' + arrayOfMeteo[h][3].WNDDIR10m + '°</span><span class="conditions"> | Rafales à 10m: </span><span class="conditions-val">' + arrayOfMeteo[h][3].WNDGUST10m + ' Km/h</span>';
                                 currentCondH2.innerHTML = arrayOfDays[3].day_long +' '+ arrayOfDays[3].date + ' à ' + time;
+                                changeBackground()
                                 break;
                                 case 4: // ... let's say the click is on the cell at index 4 (which is the 3 days after tomorrow), the nodes are changed as follow...
                                 currentTemp.innerHTML = arrayOfMeteo[h][4].TMP2m + '<span class="celsius">' + '℃' + '</span>';
                                 meteoIconSrc.value = arrayOfMeteo[h][4].ICON;
                                 currentCond.innerHTML = '<span class="conditions"> Conditions: </span><span class="conditions-val">' + arrayOfMeteo[h][4].CONDITION + '</span><span class="conditions"> | Humidité relative: </span><span class="conditions-val">' + arrayOfMeteo[h][4].RH2m + '% </span><span class="conditions"> | Précipitations: </span><span class="conditions-val">' + arrayOfMeteo[h][4].APCPsfc + ' mm </span><span class="conditions"> | Vitesse du vent à 10m : </span><span class="conditions-val">' + arrayOfMeteo[h][4].WNDSPD10m + ' Km/h</span><span class="conditions"> | Direction du vent: </span><span class="conditions-val">' + arrayOfMeteo[h][4].WNDDIR10m + '°</span><span class="conditions"> | Rafales à 10m: </span><span class="conditions-val">' + arrayOfMeteo[h][4].WNDGUST10m + ' Km/h</span>';
                                 currentCondH2.innerHTML = arrayOfDays[4].day_long +' '+ arrayOfDays[4].date + ' à ' + time;
+                                changeBackground()
                                 break;
                             }
                             currentHour.scrollIntoView(true) 
@@ -353,96 +417,6 @@
                         comingHoursForecasts[k].style.cursor = 'default';
                     });
                 }
-                            // Let's change the page background according to the time of the day
-                /*if(t.getMonth()+1 >= 10 && t.getMonth()+1 < 4) { //between october and March
-                    if (theParisHour >= 20  && theParisHour <= 5){
-                            weatherInfo.style.backgroundColor = 'rgb(4, 13, 21, .9)';
-                            document.body.style.color = '#fff';
-                    } else if (theParisHour >= 6  && theParisHour <= 9){
-                            weatherInfo.style.backgroundColor = 'rgb(38, 112, 175, .9)';
-                            document.body.style.color = '#fff';
-                    } else if (theParisHour >= 10  && theParisHour <= 16){
-                            weatherInfo.style.backgroundColor = 'rgb(234, 245, 250, .9)';
-                            document.body.style.color = '#000';
-                    } else if (theParisHour >= 17  && theParisHour <= 19){
-                            weatherInfo.style.backgroundColor = 'rgb(61, 61, 92, .9)';
-                            document.body.style.color = '#fff';
-                    } else {
-                            weatherInfo.style.backgroundColor = 'rgb(255, 255, 255, .9)';
-                            document.body.style.color = '#000';
-                    }
-                } else {
-                        if(theParisHour >= 21  && theParisHour <= 5) { //between 10pm and 5am
-                            weatherInfo.style.backgroundColor = 'rgb(10, 31, 41, .9)';
-                            document.body.style.color = '#fff';
-                        } else if (theParisHour >= 6  && theParisHour <= 9){
-                            weatherInfo.style.backgroundColor = 'rgb(101, 194, 245, .9)';
-                            document.body.style.color = '#000';
-                        } else if (theParisHour >= 10  && theParisHour <= 20){
-                            weatherInfo.style.backgroundImage = 'url(https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Jour-eclairci-min.jpg)';
-                            document.body.style.color = '#fff';
-                        }  else {
-                            weatherInfo.style.backgroundColor = 'rgb(255, 255, 255, .9)';
-                            document.body.style.color = '#000';
-                    }
-                }*/
                 
-                //Let's change the page background according to the conditions
-                let condVal = document.querySelector('.conditions-val').textContent 
-                switch(condVal) {
-                    case "Ensoleillé":
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Jour-ensoleille-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    case "Nuit claire":
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596744625/Projets/Meteo%20Paris/Nuit-claire-rgb_38_-112_-175_-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    case "Nuit légèrement voilée": //*
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596744625/Projets/Meteo%20Paris/Nuit-claire-rgb_38_-112_-175_-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    case "Ciel voilé"://*
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Temps-par-defaut-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    case "Eclaircies": 
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Jour-eclairci-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    case "Fortement nuageux": //*
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Nuit-nuageuse-rgb_38_-112_-175_-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    case "Développement nuageux":
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Jour-nuageux-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    case "Averses de pluie faible":
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707244/Projets/Meteo%20Paris/Jour-pluvieux-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    case "Nuit nuageuse":
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Nuit-nuageuse-rgb_38_-112_-175_-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    case "Nuit avec développement nuageux":
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Nuit-nuageuse-rgb_38_-112_-175_-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    case "Faiblement orageux": //*
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707244/Projets/Meteo%20Paris/Jour-pluvieux-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    case "Faiblement nuageux":
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Temps-par-defaut-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-                    default:
-                        weatherInfo.style.backgroundImage= 'url("https://res.cloudinary.com/monwebmestre/image/upload/v1596707089/Projets/Meteo%20Paris/Temps-par-defaut-min.jpg")';
-                        document.body.style.color = '#fff'; 
-                        break;
-
-                    }               
             }) 
 
