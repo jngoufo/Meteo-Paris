@@ -116,16 +116,29 @@
 
                 // Let's display the weather conditions at current time
                 t = new Date();
-                    function addZero(i, h) { // add zero if time data has 1 digit only
-                        if (i < 10 ) {
-                          i = "0" + i;
-                        }
-                        return i;
-                      }
-                let theParisHour = addZero(t.getUTCHours()+2); //Paris time is UTC+2
+                function convertToParisTime() { // convert UTC to paris time. Note Paris time is UTC+2
+                    let pTime = undefined;
+                    if (t.getUTCHours() === 22) {
+                        pTime = 0;
+                    } else if (t.getUTCHours() === 23) {
+                        pTime = 1;
+                    } else {
+                        pTime = t.getUTCHours() + 2;
+                    }
+                    return pTime
+                  };
+  
+                function addZero(number) { // add zero if time data has 1 digit only
+                    if (number < 10) {
+                        number = "0" + number;
+                    }
+                    return number;
+                    }
+
+                let theParisHour = addZero(convertToParisTime()); 
                 let theParisMin= addZero(t.getUTCMinutes());
                 weatherH1.innerHTML = 'Météo sur ' + '<span id="paris">' + meteo.city_info.name + ', ' + meteo.city_info.country + '</span>';
-                currentCondH2.innerHTML = 'En ce moment, ' + arrayOfDays[0].day_short + ' ' + theParisHour + ':' + theParisMin + ' min';
+                currentCondH2.innerHTML = 'En ce moment, ' + arrayOfDays[0].day_short + ' ' + theParisHour + ':' + theParisMin;
                 let meteoIcon = document.createElement('img');
                 meteoIcon.className = 'meteoicon';
                 let meteoIconSrc = document.createAttribute('src');
@@ -136,11 +149,11 @@
                 currentCond.innerHTML = '<span class="conditions"> Conditions: </span><span class="conditions-val">' + meteo.current_condition.condition + '</span><span class="conditions"> | Humidité: </span><span class="conditions-val">' + meteo.current_condition.humidity + '% </span><span class="conditions"> | Pression: </span><span class="conditions-val">' + meteo.current_condition.pressure + ' Hpa </span><span class="conditions"> | Vitesse du vent: </span><span class="conditions-val">' + meteo.current_condition.wnd_spd + ' Km/h </span><span class="conditions"> | Direction du vent: </span><span class="conditions-val">' + meteo.current_condition.wnd_dir + '° </span><span class="conditions"> | Rafales: </span><span class = "conditions-val">' + meteo.current_condition.wnd_gust + ' Km/h </span>';
 
                 // Let's create the table of today's forecasts
-                let nextHours = 23 - (t.getUTCHours()+2); // Hours left in the day. Note: Paris time is UTC+2. 
+ 
                 let nextHoursH2 = document.createElement('H2');
                 nextHoursH2.innerHTML = "Plus tard aujourd'hui:";
                 nextHoursH2.className = 'nextHoursh2';
-                let todayForecastTable = createTable(2, nextHours);
+                let todayForecastTable = createTable(2, (23-convertToParisTime()));
                 todayForecastTable.className = 'todayforecasttable';
                 nextHoursForecasts.append(nextHoursH2, todayForecastTable);
                 let nextHoursRow = document.querySelectorAll('table.todayforecasttable tbody tr:nth-child(1)>td');
@@ -148,12 +161,13 @@
                 let paris_time = []; // array of next hours
 
                 // Let's display next hours forecasts
-                if (nextHours<=0) { 
+                let r1, thetime;
+                if (convertToParisTime()===23) { 
                     document.querySelector('table.todayforecasttable').remove();
                     nextHoursH2.remove();
                 } else { 
-                    for(let time=1; time<=nextHours; time++) {
-                        paris_time.push((t.getUTCHours()+2) + time)// Let's put into the array, the hours remaining in the current day
+                    for(let time=convertToParisTime(); time<23; time++) {// Let's put into the array, the hours remaining in the current day
+                        paris_time.push(time+1)
                     }
 
                     for (r1=0, thetime=0; r1<nextHoursRow.length, thetime<paris_time.length; r1++, thetime++) {
