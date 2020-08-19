@@ -200,7 +200,15 @@
                 let theParisHour = addZero(convertToParisTime()); 
                 let theParisMin= addZero(t.getUTCMinutes());
                 weatherH1.innerHTML = 'Météo sur ' + '<span id="paris">' + meteo.city_info.name + ', ' + meteo.city_info.country + '</span>';
-                currentCondH2.innerHTML = 'En ce moment, ' + arrayOfDays[0].day_short + ' ' + theParisHour + ':' + theParisMin;
+                function setCurrentCondition() { //Because the current conditions data do not update before 2am by meteo paris
+                    if (convertToParisTime() <= 1) {
+                        nextHoursForecasts.style.display = 'none';
+                        return 'En ce moment, ' + arrayOfDays[1].day_short + ' ' + theParisHour + ':' + theParisMin;
+                    } else {
+                        return 'En ce moment, ' + arrayOfDays[0].day_short + ' ' + theParisHour + ':' + theParisMin;
+                    }
+                } 
+                currentCondH2.innerHTML = setCurrentCondition();
                 let meteoIcon = document.createElement('img');
                 meteoIcon.className = 'meteoicon';
                 let meteoIconSrc = document.createAttribute('src');
